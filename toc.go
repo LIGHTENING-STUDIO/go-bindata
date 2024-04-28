@@ -87,7 +87,7 @@ func getFillerSize(tokenIndex int, lengths []int, nident int) int {
 }
 
 func (root *assetTree) writeGoMap(w io.Writer, nident int) {
-	fmt.Fprintf(w, "&bintree{%s, map[string]*bintree{", root.funcOrNil())
+	fmt.Fprintf(w, "{%s, map[string]*bintree{", root.funcOrNil())
 
 	if len(root.Children) > 0 {
 		io.WriteString(w, "\n")
@@ -134,7 +134,7 @@ func (root *assetTree) WriteAsGoMap(w io.Writer) error {
 	Children map[string]*bintree
 }
 
-var _bintree = `)
+var _bintree = &bintree`)
 	root.writeGoMap(w, 0)
 	return err
 }
